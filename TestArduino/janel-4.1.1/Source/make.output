@@ -1,0 +1,242 @@
+Making the console executable
+
+Microsoft (R) Visual Studio Version 10.0.30319.1.
+Copyright (C) Microsoft Corp. All rights reserved.
+1>------ Rebuild All started: Project: Janel, Configuration: Release Console Win32 ------
+1>Build started 8/18/2012 5:37:44 PM.
+1>_PrepareForClean:
+1>  Deleting file "Release Console\Janel.lastbuildstate".
+1>InitializeBuildStatus:
+1>  Creating "Release Console\Janel.unsuccessfulbuild" because "AlwaysCreate" was specified.
+1>ClCompile:
+1>  Debug.cpp
+1>  ErrHandler.cpp
+1>  Janel.cpp
+1>  JVMChooser.cpp
+1>  JVMInfo.cpp
+1>JVMInfo.cpp(63): warning C4996: 'wcstok': This function or variable may be unsafe. Consider using wcstok_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+1>          c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\wchar.h(1018) : see declaration of 'wcstok'
+1>JVMInfo.cpp(71): warning C4996: 'wcstok': This function or variable may be unsafe. Consider using wcstok_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+1>          c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\wchar.h(1018) : see declaration of 'wcstok'
+1>  JVMLauncher.cpp
+1>JVMLauncher.cpp(460): warning C4996: 'strdup': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _strdup. See online help for details.
+1>          c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\string.h(238) : see declaration of 'strdup'
+1>  LocalUtilities.cpp
+1>  Properties.cpp
+1>Properties.cpp(105): warning C4018: '<' : signed/unsigned mismatch
+1>Properties.cpp(507): warning C4244: '=' : conversion from 'DWORDLONG' to 'double', possible loss of data
+1>Properties.cpp(611): warning C4244: '=' : conversion from 'DWORDLONG' to 'double', possible loss of data
+1>Properties.cpp(941): warning C4996: '_swprintf': This function or variable may be unsafe. Consider using _swprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+1>          c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\wchar.h(761) : see declaration of '_swprintf'
+1>Properties.cpp(953): warning C4996: '_swprintf': This function or variable may be unsafe. Consider using _swprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+1>          c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\wchar.h(761) : see declaration of '_swprintf'
+1>  PropertiesCustom.cpp
+1>  PropertiesFile.cpp
+1>PropertiesFile.cpp(40): warning C4996: '_wcsupr': This function or variable may be unsafe. Consider using _wcsupr_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+1>          c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\wchar.h(1047) : see declaration of '_wcsupr'
+1>  PropertyFileEntry.cpp
+1>  PropertyValueVariables.cpp
+1>PropertyValueVariables.cpp(46): warning C4996: '_wgetenv': This function or variable may be unsafe. Consider using _wdupenv_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+1>          c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\wchar.h(879) : see declaration of '_wgetenv'
+1>  WindowsRegistry.cpp
+1>  Generating Code...
+1>Link:
+1>  Janel.vcxproj -> C:\CodeInProgress\Janel\Source\Release Console\Janel.exe
+1>FinalizeBuildStatus:
+1>  Deleting file "Release Console\Janel.unsuccessfulbuild".
+1>  Touching "Release Console\Janel.lastbuildstate".
+1>
+1>Build succeeded.
+1>
+1>Time Elapsed 00:00:09.87
+========== Rebuild All: 1 succeeded, 0 failed, 0 skipped ==========
+        1 file(s) copied.
+
+Microsoft (R) Visual Studio Version 10.0.30319.1.
+Copyright (C) Microsoft Corp. All rights reserved.
+1>------ Rebuild All started: Project: Janel, Configuration: Release Console x64 ------
+1>Build started 8/18/2012 5:37:55 PM.
+1>_PrepareForClean:
+1>  Deleting file "x64\Release Console\Janel.lastbuildstate".
+1>InitializeBuildStatus:
+1>  Creating "x64\Release Console\Janel.unsuccessfulbuild" because "AlwaysCreate" was specified.
+1>ClCompile:
+1>  Debug.cpp
+1>  ErrHandler.cpp
+1>  Janel.cpp
+1>  JVMChooser.cpp
+1>JVMChooser.cpp(117): warning C4267: 'initializing' : conversion from 'size_t' to 'int', possible loss of data
+1>JVMChooser.cpp(208): warning C4267: 'initializing' : conversion from 'size_t' to 'int', possible loss of data
+1>  JVMInfo.cpp
+1>JVMInfo.cpp(63): warning C4996: 'wcstok': This function or variable may be unsafe. Consider using wcstok_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+1>          c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\wchar.h(1018) : see declaration of 'wcstok'
+1>JVMInfo.cpp(71): warning C4996: 'wcstok': This function or variable may be unsafe. Consider using wcstok_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+1>          c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\wchar.h(1018) : see declaration of 'wcstok'
+1>  JVMLauncher.cpp
+1>JVMLauncher.cpp(348): warning C4267: 'argument' : conversion from 'size_t' to 'jsize', possible loss of data
+1>JVMLauncher.cpp(360): warning C4267: 'argument' : conversion from 'size_t' to 'jsize', possible loss of data
+1>JVMLauncher.cpp(415): warning C4267: 'initializing' : conversion from 'size_t' to 'int', possible loss of data
+1>JVMLauncher.cpp(460): warning C4996: 'strdup': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _strdup. See online help for details.
+1>          c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\string.h(238) : see declaration of 'strdup'
+1>  LocalUtilities.cpp
+1>  Properties.cpp
+1>Properties.cpp(105): warning C4244: '=' : conversion from 'SIZE_T' to 'int', possible loss of data
+1>Properties.cpp(507): warning C4244: '=' : conversion from 'DWORDLONG' to 'double', possible loss of data
+1>Properties.cpp(611): warning C4244: '=' : conversion from 'DWORDLONG' to 'double', possible loss of data
+1>Properties.cpp(681): warning C4244: '=' : conversion from 'intptr_t' to 'long', possible loss of data
+1>Properties.cpp(842): warning C4244: '=' : conversion from 'intptr_t' to 'long', possible loss of data
+1>Properties.cpp(938): warning C4267: 'initializing' : conversion from 'size_t' to 'int', possible loss of data
+1>Properties.cpp(941): warning C4996: '_swprintf': This function or variable may be unsafe. Consider using _swprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+1>          c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\wchar.h(761) : see declaration of '_swprintf'
+1>Properties.cpp(950): warning C4267: 'initializing' : conversion from 'size_t' to 'int', possible loss of data
+1>Properties.cpp(953): warning C4996: '_swprintf': This function or variable may be unsafe. Consider using _swprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+1>          c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\wchar.h(761) : see declaration of '_swprintf'
+1>  PropertiesCustom.cpp
+1>  PropertiesFile.cpp
+1>PropertiesFile.cpp(35): warning C4267: 'initializing' : conversion from 'size_t' to 'int', possible loss of data
+1>PropertiesFile.cpp(40): warning C4996: '_wcsupr': This function or variable may be unsafe. Consider using _wcsupr_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+1>          c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\wchar.h(1047) : see declaration of '_wcsupr'
+1>PropertiesFile.cpp(183): warning C4267: 'initializing' : conversion from 'size_t' to 'int', possible loss of data
+1>PropertiesFile.cpp(186): warning C4267: 'initializing' : conversion from 'size_t' to 'int', possible loss of data
+1>  PropertyFileEntry.cpp
+1>  PropertyValueVariables.cpp
+1>PropertyValueVariables.cpp(46): warning C4996: '_wgetenv': This function or variable may be unsafe. Consider using _wdupenv_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+1>          c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\wchar.h(879) : see declaration of '_wgetenv'
+1>PropertyValueVariables.cpp(115): warning C4267: 'initializing' : conversion from 'size_t' to 'int', possible loss of data
+1>PropertyValueVariables.cpp(121): warning C4267: 'initializing' : conversion from 'size_t' to 'int', possible loss of data
+1>PropertyValueVariables.cpp(143): warning C4267: '=' : conversion from 'size_t' to 'int', possible loss of data
+1>PropertyValueVariables.cpp(149): warning C4267: 'initializing' : conversion from 'size_t' to 'int', possible loss of data
+1>  WindowsRegistry.cpp
+1>  Generating Code...
+1>Link:
+1>  Janel.vcxproj -> C:\CodeInProgress\Janel\Source\x64\Release Console\Janel.exe
+1>FinalizeBuildStatus:
+1>  Deleting file "x64\Release Console\Janel.unsuccessfulbuild".
+1>  Touching "x64\Release Console\Janel.lastbuildstate".
+1>
+1>Build succeeded.
+1>
+1>Time Elapsed 00:00:10.71
+========== Rebuild All: 1 succeeded, 0 failed, 0 skipped ==========
+        1 file(s) copied.
+Making the non-console executable
+
+Microsoft (R) Visual Studio Version 10.0.30319.1.
+Copyright (C) Microsoft Corp. All rights reserved.
+1>------ Rebuild All started: Project: Janel, Configuration: Release Windows Win32 ------
+1>Build started 8/18/2012 5:38:07 PM.
+1>_PrepareForClean:
+1>  Deleting file "Release Windows\Janel.lastbuildstate".
+1>InitializeBuildStatus:
+1>  Creating "Release Windows\Janel.unsuccessfulbuild" because "AlwaysCreate" was specified.
+1>ClCompile:
+1>  Debug.cpp
+1>  ErrHandler.cpp
+1>  Janel.cpp
+1>  JVMChooser.cpp
+1>  JVMInfo.cpp
+1>JVMInfo.cpp(63): warning C4996: 'wcstok': This function or variable may be unsafe. Consider using wcstok_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+1>          c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\wchar.h(1018) : see declaration of 'wcstok'
+1>JVMInfo.cpp(71): warning C4996: 'wcstok': This function or variable may be unsafe. Consider using wcstok_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+1>          c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\wchar.h(1018) : see declaration of 'wcstok'
+1>  JVMLauncher.cpp
+1>JVMLauncher.cpp(460): warning C4996: 'strdup': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _strdup. See online help for details.
+1>          c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\string.h(238) : see declaration of 'strdup'
+1>  LocalUtilities.cpp
+1>  Properties.cpp
+1>Properties.cpp(105): warning C4018: '<' : signed/unsigned mismatch
+1>Properties.cpp(507): warning C4244: '=' : conversion from 'DWORDLONG' to 'double', possible loss of data
+1>Properties.cpp(611): warning C4244: '=' : conversion from 'DWORDLONG' to 'double', possible loss of data
+1>Properties.cpp(941): warning C4996: '_swprintf': This function or variable may be unsafe. Consider using _swprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+1>          c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\wchar.h(761) : see declaration of '_swprintf'
+1>Properties.cpp(953): warning C4996: '_swprintf': This function or variable may be unsafe. Consider using _swprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+1>          c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\wchar.h(761) : see declaration of '_swprintf'
+1>  PropertiesCustom.cpp
+1>  PropertiesFile.cpp
+1>PropertiesFile.cpp(40): warning C4996: '_wcsupr': This function or variable may be unsafe. Consider using _wcsupr_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+1>          c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\wchar.h(1047) : see declaration of '_wcsupr'
+1>  PropertyFileEntry.cpp
+1>  PropertyValueVariables.cpp
+1>PropertyValueVariables.cpp(46): warning C4996: '_wgetenv': This function or variable may be unsafe. Consider using _wdupenv_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+1>          c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\wchar.h(879) : see declaration of '_wgetenv'
+1>  WindowsRegistry.cpp
+1>  Generating Code...
+1>Link:
+1>  Janel.vcxproj -> C:\CodeInProgress\Janel\Source\Release Windows\Janel.exe
+1>FinalizeBuildStatus:
+1>  Deleting file "Release Windows\Janel.unsuccessfulbuild".
+1>  Touching "Release Windows\Janel.lastbuildstate".
+1>
+1>Build succeeded.
+1>
+1>Time Elapsed 00:00:09.45
+========== Rebuild All: 1 succeeded, 0 failed, 0 skipped ==========
+        1 file(s) copied.
+
+Microsoft (R) Visual Studio Version 10.0.30319.1.
+Copyright (C) Microsoft Corp. All rights reserved.
+1>------ Rebuild All started: Project: Janel, Configuration: Release Windows x64 ------
+1>Build started 8/18/2012 5:38:18 PM.
+1>_PrepareForClean:
+1>  Deleting file "x64\Release Windows\Janel.lastbuildstate".
+1>InitializeBuildStatus:
+1>  Creating "x64\Release Windows\Janel.unsuccessfulbuild" because "AlwaysCreate" was specified.
+1>ClCompile:
+1>  Debug.cpp
+1>  ErrHandler.cpp
+1>  Janel.cpp
+1>  JVMChooser.cpp
+1>JVMChooser.cpp(117): warning C4267: 'initializing' : conversion from 'size_t' to 'int', possible loss of data
+1>JVMChooser.cpp(208): warning C4267: 'initializing' : conversion from 'size_t' to 'int', possible loss of data
+1>  JVMInfo.cpp
+1>JVMInfo.cpp(63): warning C4996: 'wcstok': This function or variable may be unsafe. Consider using wcstok_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+1>          c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\wchar.h(1018) : see declaration of 'wcstok'
+1>JVMInfo.cpp(71): warning C4996: 'wcstok': This function or variable may be unsafe. Consider using wcstok_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+1>          c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\wchar.h(1018) : see declaration of 'wcstok'
+1>  JVMLauncher.cpp
+1>JVMLauncher.cpp(348): warning C4267: 'argument' : conversion from 'size_t' to 'jsize', possible loss of data
+1>JVMLauncher.cpp(360): warning C4267: 'argument' : conversion from 'size_t' to 'jsize', possible loss of data
+1>JVMLauncher.cpp(415): warning C4267: 'initializing' : conversion from 'size_t' to 'int', possible loss of data
+1>JVMLauncher.cpp(460): warning C4996: 'strdup': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _strdup. See online help for details.
+1>          c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\string.h(238) : see declaration of 'strdup'
+1>  LocalUtilities.cpp
+1>  Properties.cpp
+1>Properties.cpp(105): warning C4244: '=' : conversion from 'SIZE_T' to 'int', possible loss of data
+1>Properties.cpp(507): warning C4244: '=' : conversion from 'DWORDLONG' to 'double', possible loss of data
+1>Properties.cpp(611): warning C4244: '=' : conversion from 'DWORDLONG' to 'double', possible loss of data
+1>Properties.cpp(681): warning C4244: '=' : conversion from 'intptr_t' to 'long', possible loss of data
+1>Properties.cpp(842): warning C4244: '=' : conversion from 'intptr_t' to 'long', possible loss of data
+1>Properties.cpp(938): warning C4267: 'initializing' : conversion from 'size_t' to 'int', possible loss of data
+1>Properties.cpp(941): warning C4996: '_swprintf': This function or variable may be unsafe. Consider using _swprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+1>          c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\wchar.h(761) : see declaration of '_swprintf'
+1>Properties.cpp(950): warning C4267: 'initializing' : conversion from 'size_t' to 'int', possible loss of data
+1>Properties.cpp(953): warning C4996: '_swprintf': This function or variable may be unsafe. Consider using _swprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+1>          c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\wchar.h(761) : see declaration of '_swprintf'
+1>  PropertiesCustom.cpp
+1>  PropertiesFile.cpp
+1>PropertiesFile.cpp(35): warning C4267: 'initializing' : conversion from 'size_t' to 'int', possible loss of data
+1>PropertiesFile.cpp(40): warning C4996: '_wcsupr': This function or variable may be unsafe. Consider using _wcsupr_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+1>          c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\wchar.h(1047) : see declaration of '_wcsupr'
+1>PropertiesFile.cpp(183): warning C4267: 'initializing' : conversion from 'size_t' to 'int', possible loss of data
+1>PropertiesFile.cpp(186): warning C4267: 'initializing' : conversion from 'size_t' to 'int', possible loss of data
+1>  PropertyFileEntry.cpp
+1>  PropertyValueVariables.cpp
+1>PropertyValueVariables.cpp(46): warning C4996: '_wgetenv': This function or variable may be unsafe. Consider using _wdupenv_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+1>          c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\wchar.h(879) : see declaration of '_wgetenv'
+1>PropertyValueVariables.cpp(115): warning C4267: 'initializing' : conversion from 'size_t' to 'int', possible loss of data
+1>PropertyValueVariables.cpp(121): warning C4267: 'initializing' : conversion from 'size_t' to 'int', possible loss of data
+1>PropertyValueVariables.cpp(143): warning C4267: '=' : conversion from 'size_t' to 'int', possible loss of data
+1>PropertyValueVariables.cpp(149): warning C4267: 'initializing' : conversion from 'size_t' to 'int', possible loss of data
+1>  WindowsRegistry.cpp
+1>  Generating Code...
+1>Link:
+1>  Janel.vcxproj -> C:\CodeInProgress\Janel\Source\x64\Release Windows\Janel.exe
+1>FinalizeBuildStatus:
+1>  Deleting file "x64\Release Windows\Janel.unsuccessfulbuild".
+1>  Touching "x64\Release Windows\Janel.lastbuildstate".
+1>
+1>Build succeeded.
+1>
+1>Time Elapsed 00:00:10.20
+========== Rebuild All: 1 succeeded, 0 failed, 0 skipped ==========
+        1 file(s) copied.
