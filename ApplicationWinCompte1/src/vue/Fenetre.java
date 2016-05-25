@@ -1,5 +1,7 @@
 package vue;
 
+import java.io.File;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -52,7 +54,7 @@ public class Fenetre extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        FichOuvr = new javax.swing.JMenuItem();
         jSeparator2 = new javax.swing.JPopupMenu.Separator();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
@@ -248,14 +250,14 @@ public class Fenetre extends javax.swing.JFrame {
 
         jMenu1.setText("Fichier");
 
-        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vue/Open.gif"))); // NOI18N
-        jMenuItem1.setText("Ouvrir");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        FichOuvr.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vue/Open.gif"))); // NOI18N
+        FichOuvr.setText("Ouvrir");
+        FichOuvr.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                FichOuvrActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem1);
+        jMenu1.add(FichOuvr);
         jMenu1.add(jSeparator2);
 
         jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vue/quitter.gif"))); // NOI18N
@@ -330,9 +332,16 @@ public class Fenetre extends javax.swing.JFrame {
         Ouvrir.setVisible(true);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void FichOuvrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FichOuvrActionPerformed
        
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+        int returnVal = File.showOpenDialog(Fenetre.this);
+
+        if (returnVal == File.APPROVE_OPTION) {
+            System.out.println("You chose to open this file: " +
+            File.getSelectedFile().getName());
+        }
+       
+    }//GEN-LAST:event_FichOuvrActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
             Ouvrir.dispose();
@@ -377,6 +386,7 @@ public class Fenetre extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem FichOuvr;
     private javax.swing.JFileChooser File;
     private javax.swing.JDialog Ouvrir;
     private javax.swing.JButton jButton1;
@@ -397,7 +407,6 @@ public class Fenetre extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JPanel jPanel1;

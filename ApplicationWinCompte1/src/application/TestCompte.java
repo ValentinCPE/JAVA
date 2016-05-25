@@ -5,11 +5,13 @@
  */
 package application;
 
+import java.io.IOException;
 import java.util.Map;
 import java.util.TreeMap;
 import modele.Compte;
 import modele.CompteBancaire;
 import modele.CompteEpargne;
+import utilitaire.Conteneur;
 
 /**
  *
@@ -17,6 +19,7 @@ import modele.CompteEpargne;
  */
 public class TestCompte {
    public static void main(String[] args){ 
+   try{    
     Map<String,Compte> comptes = new TreeMap<>();
     Compte compteBanc1 = new CompteBancaire(1000f,"1",200f,3f);
     Compte compteBanc2 = new CompteBancaire(1000f,"1",200f,3f);
@@ -25,6 +28,12 @@ public class TestCompte {
     
     comptes.put(compteBanc1.getNumero(), compteBanc1);
     
-    System.out.println(comptes.toString());
+    Conteneur listeComptes = new Conteneur();
+    listeComptes.charger("F-TREEMAP");
+    
+    
+    
+   }catch(IOException e){}
+   catch(ClassNotFoundException e){}
 }   
 }

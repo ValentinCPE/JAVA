@@ -18,15 +18,17 @@ import java.util.List;
  */
 public class Conteneur<V extends Serializable> {
 
-    private static int indiceCourant;
+    private static int indiceCourant = -1;
     private List<V> lesValeurs;
     
     public Conteneur(){
         lesValeurs = new ArrayList<>();
+        indiceCourant ++;
     }
     
     public Conteneur(List<V> m){
         this.lesValeurs = m;
+        indiceCourant ++;
     }
    
     public void charger(String nomFic) throws IOException, ClassNotFoundException{
