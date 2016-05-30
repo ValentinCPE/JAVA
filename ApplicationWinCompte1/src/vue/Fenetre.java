@@ -1,6 +1,10 @@
 package vue;
 
+import java.awt.Component;
 import java.io.File;
+import modele.Compte;
+import modele.CompteBancaire;
+import utilitaire.Conteneur;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -14,11 +18,17 @@ import java.io.File;
  */
 public class Fenetre extends javax.swing.JFrame {
 
+    Conteneur<Compte> con = new Conteneur<>();
     /**
      * Creates new form ApplacationWin10
      */
     public Fenetre() {
         initComponents();
+    }
+    
+    public Fenetre(Conteneur<Compte> v) {
+        initComponents();
+        this.con = v;
     }
 
     /**
@@ -30,7 +40,7 @@ public class Fenetre extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        File = new javax.swing.JFileChooser();
+        d = new javax.swing.JFileChooser();
         Ouvrir = new javax.swing.JDialog();
         jPanel2 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
@@ -40,8 +50,8 @@ public class Fenetre extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jCheckBox2 = new javax.swing.JCheckBox();
+        CompteBancCheck = new javax.swing.JCheckBox();
+        CompteEpar = new javax.swing.JCheckBox();
         jLabel3 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
@@ -60,8 +70,8 @@ public class Fenetre extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
 
-        File.setDialogTitle("Chargement ...");
-        File.setName("Chargement ..."); // NOI18N
+        d.setDialogTitle("Chargement ...");
+        d.setName("Chargement ..."); // NOI18N
 
         Ouvrir.setTitle("A Propos");
 
@@ -125,12 +135,17 @@ public class Fenetre extends javax.swing.JFrame {
 
         jLabel2.setText("Type de compte");
 
-        jCheckBox1.setText("Compte Bancaire");
-
-        jCheckBox2.setText("Compte Epargne");
-        jCheckBox2.addActionListener(new java.awt.event.ActionListener() {
+        CompteBancCheck.setText("Compte Bancaire");
+        CompteBancCheck.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox2ActionPerformed(evt);
+                CompteBancCheckActionPerformed(evt);
+            }
+        });
+
+        CompteEpar.setText("Compte Epargne");
+        CompteEpar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CompteEparActionPerformed(evt);
             }
         });
 
@@ -186,7 +201,7 @@ public class Fenetre extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addGap(18, 18, 18)
-                                .addComponent(jCheckBox1))
+                                .addComponent(CompteBancCheck))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel3)
@@ -196,7 +211,7 @@ public class Fenetre extends javax.swing.JFrame {
                                     .addComponent(jTextField2)
                                     .addComponent(jTextField1))))
                         .addGap(18, 18, 18)
-                        .addComponent(jCheckBox2)
+                        .addComponent(CompteEpar)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -227,8 +242,8 @@ public class Fenetre extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
-                            .addComponent(jCheckBox1)
-                            .addComponent(jCheckBox2))
+                            .addComponent(CompteBancCheck)
+                            .addComponent(CompteEpar))
                         .addGap(31, 31, 31)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
@@ -300,9 +315,9 @@ public class Fenetre extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jCheckBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox2ActionPerformed
+    private void CompteEparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CompteEparActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox2ActionPerformed
+    }//GEN-LAST:event_CompteEparActionPerformed
 
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
         // TODO add your handling code here:
@@ -310,18 +325,26 @@ public class Fenetre extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        this.con.premier();
+        affichage();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        this.con.precedent();
+        affichage();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+            // TODO add your handling code here:
+            this.con.suivant();
+            affichage();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
+        this.con.dernier();
+        affichage();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
@@ -334,11 +357,14 @@ public class Fenetre extends javax.swing.JFrame {
 
     private void FichOuvrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FichOuvrActionPerformed
        
-        int returnVal = File.showOpenDialog(Fenetre.this);
+        int returnVal = d.showOpenDialog((Component) evt.getSource());
 
-        if (returnVal == File.APPROVE_OPTION) {
-            System.out.println("You chose to open this file: " +
-            File.getSelectedFile().getName());
+        if (returnVal == d.APPROVE_OPTION) {
+           File f = d.getSelectedFile();
+            try{
+                this.con.charger("F-TREEMAP");
+                affichage();
+            }catch(Exception e){}            
         }
        
     }//GEN-LAST:event_FichOuvrActionPerformed
@@ -347,55 +373,23 @@ public class Fenetre extends javax.swing.JFrame {
             Ouvrir.dispose();
     }//GEN-LAST:event_jButton5ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Fenetre.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Fenetre.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Fenetre.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Fenetre.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
+    private void CompteBancCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CompteBancCheckActionPerformed
+            
+    }//GEN-LAST:event_CompteBancCheckActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Fenetre().setVisible(true);
-            }
-        });
-    }
+  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JCheckBox CompteBancCheck;
+    private javax.swing.JCheckBox CompteEpar;
     private javax.swing.JMenuItem FichOuvr;
-    private javax.swing.JFileChooser File;
     private javax.swing.JDialog Ouvrir;
+    private javax.swing.JFileChooser d;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JCheckBox jCheckBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -416,4 +410,22 @@ public class Fenetre extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
+
+    private void affichage() {
+        if(!this.con.estVide()){
+        Compte compte1 = this.con.obtenir();
+        if(compte1 instanceof CompteBancaire){
+        CompteBancCheck.setSelected(true);
+        CompteEpar.setSelected(false);
+
+        }else{
+        CompteEpar.setSelected(true);
+        CompteBancCheck.setSelected(false);
+        }
+        
+        jTextField1.setText(String.valueOf(compte1.getNumero()));
+        jTextField2.setText(String.valueOf(compte1.getSolde()));
+
+        }   
+    }
 }

@@ -18,17 +18,19 @@ import java.util.List;
  */
 public class Conteneur<V extends Serializable> {
 
-    private static int indiceCourant = -1;
+    private static int indiceCourant;
     private List<V> lesValeurs;
     
     public Conteneur(){
-        lesValeurs = new ArrayList<>();
-        indiceCourant ++;
+        lesValeurs = null;
+        indiceCourant = -1;
     }
     
     public Conteneur(List<V> m){
+        if(m != null){
         this.lesValeurs = m;
-        indiceCourant ++;
+        indiceCourant=0;
+        }
     }
    
     public void charger(String nomFic) throws IOException, ClassNotFoundException{
@@ -36,11 +38,20 @@ public class Conteneur<V extends Serializable> {
                                                     new FileInputStream(
                                                             new File(nomFic)));
         lesValeurs = (List<V>) ofic.readObject();
+        if(lesValeurs != null && !lesValeurs.isEmpty()){
+        indiceCourant = 0;
+        }
+    }
+    
+    public void premier(){
+        if(!estVide()){
+           indiceCourant = 0;
+        }
     }
     
     public void dernier(){
        if(!estVide()) {
-       indiceCourant = lesValeurs.size();
+       indiceCourant = lesValeurs.size()-1;
        }else{
            indiceCourant = 0;
        }

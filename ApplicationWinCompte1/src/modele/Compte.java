@@ -5,13 +5,14 @@
  */
 package modele;
 
+import java.io.Serializable;
 import static java.time.LocalDate.now;
 
 /**
  *
  * @author Valentin
  */
-public abstract class Compte {
+public abstract class Compte implements Serializable{
     protected String numeroCompte;
     protected float soldeCompte;
     protected String dateOuverture;
