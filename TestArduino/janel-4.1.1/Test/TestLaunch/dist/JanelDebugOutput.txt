@@ -1,0 +1,40 @@
+pBestJvmInfo->toString()=m_jvmPath=C:\Program Files\Java\jre1.8.0_25\bin\server\jvm.dll,m_javaBundle=jre,m_binJvmDir=server,m_comparableVersion=001.008.000.025.B2.D1.,m_javaHomePath=C:\Program Files\Java\jre1.8.0_25,m_version=1.8.0_25,m_jrePath=C:\Program Files\Java\jre1.8.0_25\bin\,m_acceptable=true
+,m_javaSystemProperties[0]=-Djava.class.path=TestLaunch.jar
+m_pProperties->toString()=m_fullPathAndNameOfExe=C:\CodeInProgress\Janel\Test\TestLaunch\TestConsole.exe,m_selfHomePath=C:\CodeInProgress\Janel\Test\TestLaunch,m_customJavaHomePath=,m_customBinJvmDir=,m_mainClass=testpackage.TestLaunch045,m_customJvmPath=,m_minJavaVersion=,m_maxJavaVersion=,m_trapConsoleCtrl=,m_jarsInClasspath=,m_libraryPath=,m_debugFile=,m_callerDir=C:\CodeInProgress\Janel\Test\TestLaunch,m_javaSystemProperties[0]=-Djava.class.path=TestLaunch.jar
+Trying to load msvcr71.dll (for Java 1.6)...
+Trying to load msvcr100.dll (for Java 1.7)...
+msvcr100.dll loaded
+getSplash
+pJvmPath()=C:\Program Files\Java\jre1.8.0_25\bin\server\jvm.dll
+Just about to CreateJavaVM
+setupJavaVMInitArgs javaSysProp=-Djava.class.path=TestLaunch.jar
+pBestJvmInfo->toString()=m_jvmPath=C:\Program Files\Java\jre1.8.0_25\bin\server\jvm.dll,m_javaBundle=jre,m_binJvmDir=server,m_comparableVersion=001.008.000.025.B2.D1.,m_javaHomePath=C:\Program Files\Java\jre1.8.0_25,m_version=1.8.0_25,m_jrePath=C:\Program Files\Java\jre1.8.0_25\bin\,m_acceptable=true
+,m_javaSystemProperties[0]=-Djava.class.path=TestLaunch.jar
+m_pProperties->toString()=m_fullPathAndNameOfExe=C:\CodeInProgress\Janel\Test\TestLaunch\TestWindows.exe,m_selfHomePath=C:\CodeInProgress\Janel\Test\TestLaunch,m_customJavaHomePath=,m_customBinJvmDir=,m_mainClass=testpackage.TestLaunch045,m_customJvmPath=,m_minJavaVersion=,m_maxJavaVersion=,m_trapConsoleCtrl=,m_jarsInClasspath=,m_libraryPath=,m_debugFile=,m_callerDir=C:\CodeInProgress\Janel\Test\TestLaunch,m_javaSystemProperties[0]=-Djava.class.path=TestLaunch.jar
+Trying to load msvcr71.dll (for Java 1.6)...
+Trying to load msvcr100.dll (for Java 1.7)...
+msvcr100.dll loaded
+getSplash
+pJvmPath()=C:\Program Files\Java\jre1.8.0_25\bin\server\jvm.dll
+Just about to CreateJavaVM
+setupJavaVMInitArgs javaSysProp=-Djava.class.path=TestLaunch.jar
+pBestJvmInfo->toString()=m_jvmPath=C:\Program Files\Java\jre1.8.0_25\bin\server\jvm.dll,m_javaBundle=jre,m_binJvmDir=server,m_comparableVersion=001.008.000.025.B2.D1.,m_javaHomePath=C:\Program Files\Java\jre1.8.0_25,m_version=1.8.0_25,m_jrePath=C:\Program Files\Java\jre1.8.0_25\bin\,m_acceptable=true
+,m_javaSystemProperties[0]=-Djava.class.path=TestLaunch.jar
+m_pProperties->toString()=m_fullPathAndNameOfExe=C:\CodeInProgress\Janel\Test\TestLaunch\TestConsole.exe,m_selfHomePath=C:\CodeInProgress\Janel\Test\TestLaunch,m_customJavaHomePath=,m_customBinJvmDir=,m_mainClass=testpackage.TestLaunch045,m_customJvmPath=,m_minJavaVersion=,m_maxJavaVersion=,m_trapConsoleCtrl=,m_jarsInClasspath=,m_libraryPath=,m_debugFile=,m_callerDir=C:\CodeInProgress\Janel\Test\TestLaunch,m_javaSystemProperties[0]=-Djava.class.path=TestLaunch.jar
+Trying to load msvcr71.dll (for Java 1.6)...
+Trying to load msvcr100.dll (for Java 1.7)...
+msvcr100.dll loaded
+getSplash
+pJvmPath()=C:\Program Files\Java\jre1.8.0_25\bin\server\jvm.dll
+Just about to CreateJavaVM
+setupJavaVMInitArgs javaSysProp=-Djava.class.path=TestLaunch.jar
+pBestJvmInfo->toString()=m_jvmPath=C:\Program Files\Java\jre1.8.0_25\bin\server\jvm.dll,m_javaBundle=jre,m_binJvmDir=server,m_comparableVersion=001.008.000.025.B2.D1.,m_javaHomePath=C:\Program Files\Java\jre1.8.0_25,m_version=1.8.0_25,m_jrePath=C:\Program Files\Java\jre1.8.0_25\bin\,m_acceptable=true
+,m_javaSystemProperties[0]=-Djava.class.path=TestLaunch.jar
+m_pProperties->toString()=m_fullPathAndNameOfExe=C:\CodeInProgress\Janel\Test\TestLaunch\TestWindows.exe,m_selfHomePath=C:\CodeInProgress\Janel\Test\TestLaunch,m_customJavaHomePath=,m_customBinJvmDir=,m_mainClass=testpackage.TestLaunch045,m_customJvmPath=,m_minJavaVersion=,m_maxJavaVersion=,m_trapConsoleCtrl=,m_jarsInClasspath=,m_libraryPath=,m_debugFile=,m_callerDir=C:\CodeInProgress\Janel\Test\TestLaunch,m_javaSystemProperties[0]=-Djava.class.path=TestLaunch.jar
+Trying to load msvcr71.dll (for Java 1.6)...
+Trying to load msvcr100.dll (for Java 1.7)...
+msvcr100.dll loaded
+getSplash
+pJvmPath()=C:\Program Files\Java\jre1.8.0_25\bin\server\jvm.dll
+Just about to CreateJavaVM
+setupJavaVMInitArgs javaSysProp=-Djava.class.path=TestLaunch.jar
