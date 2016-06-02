@@ -10,7 +10,6 @@ import utilitaire.Conteneur;
  * @author Valentin
  */
 public class Application1 {
-    public static void main(String[] args){
         Compte compteBanc = new CompteBancaire(1000f,"1",200f,3f);
         Compte compteEpar = new CompteEpargne(2000f,"1",3000f,30f);
         
@@ -23,4 +22,4 @@ public class Application1 {
         
         
     }
-}
+
