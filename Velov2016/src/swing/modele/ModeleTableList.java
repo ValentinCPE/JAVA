@@ -18,6 +18,7 @@ public class ModeleTableList extends AbstractTableModel{
     Object donnees[][];
     
     public ModeleTableList(Object donne[][]){
+        super();
         this.donnees = donne;
     }
     
