@@ -15,6 +15,7 @@ import java.util.List;
 /**
  *
  * @author p1505332
+ * @param <V>
  */
 public class Conteneur<V extends Serializable> {
 

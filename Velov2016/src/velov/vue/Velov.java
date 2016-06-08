@@ -1,11 +1,17 @@
 package velov.vue;
 
 import java.awt.Component;
+import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
 import javax.swing.JList;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -17,17 +23,16 @@ import velov.modele.Station;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author Valentin
  */
 public class Velov extends javax.swing.JFrame {
-    String[] arrondissements = {"Lyon 1er arrondissement", "Lyon 2ème arrondissement", "Lyon 3ème arrondissement", "Lyon 4ème arrondissement", "Lyon 5ème arrondissement", "Lyon 6ème arrondissement", "Lyon 7ème arrondissement","Lyon 8ème arrondissement","Lyon 9ème arrondissement"};
-    //JList<String> liste = new JList<>(arrondissements);
+
     List<Station> sta = new ArrayList<>();
     ModeleTableList mm;
     int valeurListe;
+
     /**
      * Creates new form Velov
      */
@@ -42,8 +47,6 @@ public class Velov extends javax.swing.JFrame {
         jTextField3.setText("");
         jList1.setEnabled(false);
     }
-    
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -62,6 +65,17 @@ public class Velov extends javax.swing.JFrame {
         erreur = new javax.swing.JDialog();
         jLabel7 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
+        propos = new javax.swing.JDialog();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jButton4 = new javax.swing.JButton();
+        confirmSuppr = new javax.swing.JDialog();
+        jLabel13 = new javax.swing.JLabel();
+        jButton5 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -163,6 +177,117 @@ public class Velov extends javax.swing.JFrame {
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        propos.setSize(new java.awt.Dimension(420, 300));
+
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/velov/vue/borne.JPG"))); // NOI18N
+        jLabel8.setText("jLabel8");
+
+        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel9.setText("Application Vélo'v");
+
+        jLabel10.setText("Une application java Swing pour ");
+
+        jLabel11.setText("le Grand Lyon");
+
+        jLabel12.setText("Product Version : 1.0");
+
+        jButton4.setText("Fermer");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout proposLayout = new javax.swing.GroupLayout(propos.getContentPane());
+        propos.getContentPane().setLayout(proposLayout);
+        proposLayout.setHorizontalGroup(
+            proposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(proposLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(proposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(proposLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(proposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel10)
+                            .addComponent(jLabel11)
+                            .addComponent(jLabel12))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, proposLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, proposLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel9)
+                .addGap(26, 26, 26))
+        );
+        proposLayout.setVerticalGroup(
+            proposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(proposLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel9)
+                .addGroup(proposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(proposLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel8))
+                    .addGroup(proposLayout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addComponent(jLabel10)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel11)
+                        .addGap(26, 26, 26)
+                        .addComponent(jLabel12)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton4)))
+                .addContainerGap(22, Short.MAX_VALUE))
+        );
+
+        confirmSuppr.setSize(new java.awt.Dimension(420, 200));
+
+        jLabel13.setText("Voulez-vous vraiment supprimer ?");
+
+        jButton5.setText("Oui");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
+        jButton6.setText("Non");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout confirmSupprLayout = new javax.swing.GroupLayout(confirmSuppr.getContentPane());
+        confirmSuppr.getContentPane().setLayout(confirmSupprLayout);
+        confirmSupprLayout.setHorizontalGroup(
+            confirmSupprLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(confirmSupprLayout.createSequentialGroup()
+                .addGap(120, 120, 120)
+                .addComponent(jLabel13)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(confirmSupprLayout.createSequentialGroup()
+                .addGap(83, 83, 83)
+                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 85, Short.MAX_VALUE)
+                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(81, 81, 81))
+        );
+        confirmSupprLayout.setVerticalGroup(
+            confirmSupprLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(confirmSupprLayout.createSequentialGroup()
+                .addGap(53, 53, 53)
+                .addComponent(jLabel13)
+                .addGap(35, 35, 35)
+                .addGroup(confirmSupprLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton5)
+                    .addComponent(jButton6))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -327,11 +452,30 @@ public class Velov extends javax.swing.JFrame {
         jMenu1.add(jMenuItem2);
 
         jMenuItem3.setText("Quitter");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem3);
 
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("?");
+        jMenu2.addMenuListener(new javax.swing.event.MenuListener() {
+            public void menuCanceled(javax.swing.event.MenuEvent evt) {
+            }
+            public void menuDeselected(javax.swing.event.MenuEvent evt) {
+            }
+            public void menuSelected(javax.swing.event.MenuEvent evt) {
+                jMenu2MenuSelected(evt);
+            }
+        });
+        jMenu2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu2ActionPerformed(evt);
+            }
+        });
         jMenuBar1.add(jMenu2);
 
         setJMenuBar(jMenuBar1);
@@ -358,10 +502,17 @@ public class Velov extends javax.swing.JFrame {
         // TODO add your handling code here:
         int returnVal = d.showOpenDialog((Component) evt.getSource());
 
-        if (returnVal == d.APPROVE_OPTION) {
-           File f = d.getSelectedFile();
-                       
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+            File f = d.getSelectedFile();
+            try {
+                mm.charger(f.getName());
+
+            } catch (IOException | ClassNotFoundException e) {
+                System.out.println(e.getMessage());
+            }
         }
+
+
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
@@ -374,24 +525,20 @@ public class Velov extends javax.swing.JFrame {
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         // TODO add your handling code here:
-        
-        try{
-        int ligneSelec = jTable1.getSelectedRow();
-        Object ligneASauv = mm.getValueAt(ligneSelec, 0);
-        Station sauv = mm.rechercheStation((String) ligneASauv);
-        ObjectOutputStream ofic = new ObjectOutputStream(
-                                                         new FileOutputStream(
-                                                            new File("borne")));
-        ofic.writeObject(sauv);
-        }catch(Exception e){}
+        int returnVal = d.showOpenDialog((Component) evt.getSource());
+
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+            File f = d.getSelectedFile();
+            mm.sauvegarde(f.getName());
+        }
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void creerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_creerButtonActionPerformed
         // TODO add your handling code here:
-        if(creerButton.getActionCommand().equals("Ok?")){ 
+        if (creerButton.getActionCommand().equals("Ok?")) {
             confirm.setVisible(true);
             jList1.setEnabled(false);
-        }else if(creerButton.getActionCommand().equals("Créer")){
+        } else if (creerButton.getActionCommand().equals("Créer")) {
             jTextField1.setEditable(true);
             jTextField2.setEditable(true);
             jTextField3.setEditable(true);
@@ -406,7 +553,7 @@ public class Velov extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        if(!jTextField1.getText().equals("")&&!jTextField2.getText().equals("")&&!jTextField3.getText().equals("")&&!jList1.isSelectionEmpty()){
+        if (!jTextField1.getText().equals("") && !jTextField2.getText().equals("") && !jTextField3.getText().equals("") && !jList1.isSelectionEmpty()) {
             Integer numArrond;
             String num = jTextField1.getText();
             String nom = jTextField2.getText();
@@ -422,32 +569,15 @@ public class Velov extends javax.swing.JFrame {
             jTextField2.setText("");
             jTextField3.setText("");
             creerButton.setText("Créer");
-        }else{
-                erreur.setVisible(true);
-                confirm.setVisible(false);
-            }
+        } else {
+            erreur.setVisible(true);
+            confirm.setVisible(false);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void supprButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_supprButtonActionPerformed
         // TODO add your handling code here:
-        Object ligneASuppr;
-        if(jTable1.getSelectedRowCount() > 1){
-            int[] plusieursLignesSelec = jTable1.getSelectedRows();
-            for (int i = plusieursLignesSelec.length - 1; i >= 0; i--){
-                ligneASuppr = mm.getValueAt(plusieursLignesSelec[i], 0);
-                mm.supprimerListe((String) ligneASuppr);
-            }
-        }else{
-        int ligneSelec = jTable1.getSelectedRow();
-        ligneASuppr = mm.getValueAt(ligneSelec, 0);
-        mm.supprimerListe((String) ligneASuppr);
-        }
-        jTextField1.setText("");
-        jTextField2.setText("");
-        jTextField3.setText("");
-        jList1.clearSelection();
-        creerButton.setText("Créer");
-        jList1.setEnabled(false);
+        confirmSuppr.setVisible(true);
     }//GEN-LAST:event_supprButtonActionPerformed
 
     private void jList1ValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jList1ValueChanged
@@ -465,7 +595,7 @@ public class Velov extends javax.swing.JFrame {
         jTextField1.setText((String) valNum);
         jTextField2.setText((String) valNom);
         jTextField3.setText((String) valLocal);
-        int selectionListe = ((Integer) valNumArron) - 1; 
+        int selectionListe = ((Integer) valNumArron) - 1;
         jList1.setSelectedIndex(selectionListe);
         jList1.ensureIndexIsVisible(jList1.getSelectedIndex());
     }//GEN-LAST:event_jTable1MouseClicked
@@ -481,6 +611,65 @@ public class Velov extends javax.swing.JFrame {
         confirm.setVisible(false);
         jList1.setEnabled(true);
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jMenu2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu2ActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jMenu2ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        propos.setVisible(false);
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        if (mm.getRowCount() > 0) {
+            Object ligneASuppr;
+            if (jTable1.getSelectedRowCount() > 1) {
+                int[] plusieursLignesSelec = jTable1.getSelectedRows();
+                for (int i = plusieursLignesSelec.length - 1; i >= 0; i--) {
+                    ligneASuppr = mm.getValueAt(plusieursLignesSelec[i], 0);
+                    mm.supprimerListe((String) ligneASuppr);
+                }
+            } else {
+                int ligneSelec = jTable1.getSelectedRow();
+                ligneASuppr = mm.getValueAt(ligneSelec, 0);
+                mm.supprimerListe((String) ligneASuppr);
+            }
+            jTextField1.setText("");
+            jTextField2.setText("");
+            jTextField3.setText("");
+            jList1.clearSelection();
+            creerButton.setText("Créer");
+            jList1.setEnabled(false);
+        }
+        confirmSuppr.setVisible(false);
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+        confirmSuppr.setVisible(false);
+        jTextField1.setEditable(true);
+        jTextField2.setEditable(true);
+        jTextField3.setEditable(true);
+        jTextField1.setText("");
+        jTextField2.setText("");
+        jTextField3.setText("");
+        jList1.setEnabled(true);
+        jTable1.clearSelection();
+
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jMenu2MenuSelected(javax.swing.event.MenuEvent evt) {//GEN-FIRST:event_jMenu2MenuSelected
+        // TODO add your handling code here:
+        propos.setVisible(true);
+    }//GEN-LAST:event_jMenu2MenuSelected
 
     /**
      * @param args the command line arguments
@@ -516,25 +705,35 @@ public class Velov extends javax.swing.JFrame {
                 new Velov().setVisible(true);
             }
         });
-        
+
     }
 
-         
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDialog confirm;
+    private javax.swing.JDialog confirmSuppr;
     private javax.swing.JButton creerButton;
     private javax.swing.JFileChooser d;
     private javax.swing.JDialog erreur;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JList<String> jList1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
@@ -550,6 +749,7 @@ public class Velov extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
+    private javax.swing.JDialog propos;
     private javax.swing.JButton supprButton;
     // End of variables declaration//GEN-END:variables
 }

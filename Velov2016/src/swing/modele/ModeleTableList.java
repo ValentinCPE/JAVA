@@ -5,6 +5,14 @@
  */
 package swing.modele;
 
+import java.awt.Component;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.List;
 import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
@@ -14,7 +22,7 @@ import velov.modele.Station;
  *
  * @author Valentin
  */
-public class ModeleTableList extends AbstractTableModel{
+public class ModeleTableList extends AbstractTableModel implements Serializable{
     private String[] columnNames = {"Numéro station","Nom station","Numéro arrondissement", "Localisation"};
     private List<Station> conttable = new ArrayList<>();
     
@@ -97,5 +105,23 @@ public class ModeleTableList extends AbstractTableModel{
             }
         }
         return null;
+    }
+    
+    public void sauvegarde(String nomFic){
+        try{
+        ObjectOutputStream ofic = new ObjectOutputStream(
+                                                         new FileOutputStream(
+                                                            new File(nomFic)));
+        ofic.writeObject(conttable);
+        }catch(Exception e){}
+    }
+    
+    public void charger(String nomFic) throws IOException, ClassNotFoundException{
+       ObjectInputStream ofic = new ObjectInputStream(
+                                                    new FileInputStream(
+                                                            new File(nomFic)));
+        
+        conttable = (List<Station>) ofic.readObject();
+        fireTableStructureChanged();
     }
 }
