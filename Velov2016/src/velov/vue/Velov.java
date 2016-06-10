@@ -505,7 +505,7 @@ public class Velov extends javax.swing.JFrame {
         if (returnVal == JFileChooser.APPROVE_OPTION) {
             File f = d.getSelectedFile();
             try {
-                mm.charger(f.getName());
+                mm.charger(f.getAbsolutePath());
 
             } catch (IOException | ClassNotFoundException e) {
                 System.out.println(e.getMessage());
@@ -525,11 +525,11 @@ public class Velov extends javax.swing.JFrame {
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         // TODO add your handling code here:
-        int returnVal = d.showOpenDialog((Component) evt.getSource());
+        int returnVal = d.showSaveDialog((Component) evt.getSource());
 
         if (returnVal == JFileChooser.APPROVE_OPTION) {
             File f = d.getSelectedFile();
-            mm.sauvegarde(f.getName());
+            mm.sauvegarde(f.getAbsolutePath());
         }
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
