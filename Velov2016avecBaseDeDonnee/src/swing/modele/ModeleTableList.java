@@ -86,8 +86,12 @@ public class ModeleTableList extends AbstractTableModel implements Serializable{
         Station sta1 = new Station(numsta,nomsta,localisation,numarrond);
         conttable.add(sta1);
         fireTableStructureChanged();
-        
     }
+    
+    public void ajoutListe(Station s){
+        conttable.add(s);
+        fireTableStructureChanged();
+        }
     
     public void supprimerListe(String numsta){
         int i = 0;
@@ -122,6 +126,14 @@ public class ModeleTableList extends AbstractTableModel implements Serializable{
                                                             new File(nomFic)));
         
         conttable = (List<Station>) ofic.readObject();
+        fireTableStructureChanged();
+    }
+    
+    public void metAJourTable(List<Station> baseDonnee){
+        conttable.removeAll(conttable);
+        for (int i = 0; i < baseDonnee.size(); i++) {
+            conttable.add(baseDonnee.get(i));
+        }
         fireTableStructureChanged();
     }
 }
