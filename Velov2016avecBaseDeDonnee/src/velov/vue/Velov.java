@@ -1,5 +1,6 @@
 package velov.vue;
 
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.event.WindowEvent;
 import java.io.File;
@@ -17,6 +18,8 @@ import javax.swing.JFrame;
 import javax.swing.JList;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.UIManager;
+import javax.swing.text.BadLocationException;
 import swing.modele.ModeleTableList;
 import velov.dao.oracle.OracleStationDAO;
 import velov.modele.Station;
@@ -35,6 +38,10 @@ public class Velov extends javax.swing.JFrame {
     List<Station> sta = new ArrayList<>();
     ModeleTableList mm;
     int valeurListe;
+    private static boolean dialogPasse = false;
+    private String username;
+    private String password;
+    private static OracleStationDAO bd;
 
     /**
      * Creates new form Velov
@@ -42,6 +49,13 @@ public class Velov extends javax.swing.JFrame {
     public Velov() {
         mm = new ModeleTableList(sta);
         initComponents();
+        if(!dialogPasse){
+        initDialogRun();
+        }else{
+            for (int i = 0; i < bd.getLesStations().size(); i++) {
+            mm.ajoutListe(bd.getLesStations().get(i));
+        }
+        }
         jTextField1.setEditable(false);
         jTextField2.setEditable(false);
         jTextField3.setEditable(false);
@@ -49,11 +63,11 @@ public class Velov extends javax.swing.JFrame {
         jTextField2.setText("");
         jTextField3.setText("");
         jList1.setEnabled(false);
-        validModifButton.setVisible(false);
-        OracleStationDAO bd = new OracleStationDAO("connexion.properties");
-        for (int i = 0; i < bd.getLesStations().size(); i++) {
-            mm.ajoutListe(bd.getLesStations().get(i));
-        }
+        validModifButton.setVisible(false);  
+        jButton7.setVisible(false);
+        testButton.setEnabled(false);
+        userNumberLabel.setVisible(true);
+        passwordNumberLabel.setVisible(true);
     }
 
     /**
@@ -84,6 +98,22 @@ public class Velov extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
+        initDialog = new javax.swing.JDialog();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        jTextFieldUsername = new javax.swing.JTextField();
+        testButton = new javax.swing.JButton();
+        jLabel17 = new javax.swing.JLabel();
+        enterButton = new javax.swing.JButton();
+        connexionProgressBar = new javax.swing.JProgressBar();
+        incorrectValue = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        jTextFieldPassword = new javax.swing.JPasswordField();
+        jCheckBoxPassword = new javax.swing.JCheckBox();
+        jButton7 = new javax.swing.JButton();
+        userNumberLabel = new javax.swing.JLabel();
+        passwordNumberLabel = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -302,6 +332,153 @@ public class Velov extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        initDialog.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        initDialog.setTitle("Connexion");
+        initDialog.setSize(new java.awt.Dimension(500, 400));
+
+        jLabel14.setText("Connexion à la base de donnée :");
+
+        jLabel15.setText("Nom d'utilisateur :");
+
+        jLabel16.setText("Code BIP :");
+
+        jTextFieldUsername.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldUsernameKeyReleased(evt);
+            }
+        });
+
+        testButton.setText("Tester la connexion");
+        testButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                testButtonActionPerformed(evt);
+            }
+        });
+
+        jLabel17.setText("Pour commencer :");
+
+        enterButton.setText("Acceder à l'application");
+        enterButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                enterButtonActionPerformed(evt);
+            }
+        });
+
+        jLabel18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/velov/vue/Database-300x300.png"))); // NOI18N
+
+        jTextFieldPassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldPasswordActionPerformed(evt);
+            }
+        });
+        jTextFieldPassword.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldPasswordKeyReleased(evt);
+            }
+        });
+
+        jCheckBoxPassword.setText("Voir le Mot de Passe");
+        jCheckBoxPassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBoxPasswordActionPerformed(evt);
+            }
+        });
+
+        jButton7.setText("Quitter");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+
+        userNumberLabel.setText("8 caracteres nécessaires");
+
+        passwordNumberLabel.setText("6 caracteres nécessaires");
+
+        javax.swing.GroupLayout initDialogLayout = new javax.swing.GroupLayout(initDialog.getContentPane());
+        initDialog.getContentPane().setLayout(initDialogLayout);
+        initDialogLayout.setHorizontalGroup(
+            initDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(initDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel18)
+                .addGap(24, 24, 24))
+            .addGroup(initDialogLayout.createSequentialGroup()
+                .addGroup(initDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(initDialogLayout.createSequentialGroup()
+                        .addGap(142, 142, 142)
+                        .addComponent(testButton))
+                    .addGroup(initDialogLayout.createSequentialGroup()
+                        .addGap(43, 43, 43)
+                        .addGroup(initDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel16))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(initDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(initDialogLayout.createSequentialGroup()
+                                .addComponent(jTextFieldPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(passwordNumberLabel))
+                            .addGroup(initDialogLayout.createSequentialGroup()
+                                .addComponent(jTextFieldUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(userNumberLabel))))
+                    .addGroup(initDialogLayout.createSequentialGroup()
+                        .addGap(131, 131, 131)
+                        .addGroup(initDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(incorrectValue, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(connexionProgressBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(initDialogLayout.createSequentialGroup()
+                        .addGap(156, 156, 156)
+                        .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(initDialogLayout.createSequentialGroup()
+                        .addGap(83, 83, 83)
+                        .addComponent(enterButton, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(initDialogLayout.createSequentialGroup()
+                        .addGap(138, 138, 138)
+                        .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(41, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, initDialogLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jCheckBoxPassword)
+                .addGap(160, 160, 160))
+        );
+        initDialogLayout.setVerticalGroup(
+            initDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(initDialogLayout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addGroup(initDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel14)
+                    .addComponent(jLabel18))
+                .addGap(32, 32, 32)
+                .addGroup(initDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel15)
+                    .addComponent(jTextFieldUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(userNumberLabel))
+                .addGap(21, 21, 21)
+                .addGroup(initDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel16)
+                    .addComponent(jTextFieldPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(passwordNumberLabel))
+                .addGap(3, 3, 3)
+                .addComponent(jCheckBoxPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel17)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(testButton)
+                .addGap(21, 21, 21)
+                .addComponent(connexionProgressBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(4, 4, 4)
+                .addComponent(incorrectValue)
+                .addGap(18, 18, 18)
+                .addComponent(enterButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton7)
+                .addContainerGap(102, Short.MAX_VALUE))
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/velov/vue/bandeau.JPG"))); // NOI18N
@@ -476,10 +653,11 @@ public class Velov extends javax.swing.JFrame {
                             .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(creerButton)
-                            .addComponent(supprButton)
-                            .addComponent(editButton, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(editButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(creerButton)
+                                .addComponent(supprButton))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(27, 27, 27)
                         .addComponent(validModifButton)
@@ -613,7 +791,6 @@ public class Velov extends javax.swing.JFrame {
             String localisation = jTextField3.getText();
             numArrond = valeurListe + 1;
             Station nouvStation = new Station(num, nom, localisation, numArrond);
-            OracleStationDAO bd = new OracleStationDAO("connexion.properties");
             bd.creerStation(nouvStation);
             mm.metAJourTable(bd.getLesStations());
             confirm.setVisible(false);
@@ -636,6 +813,7 @@ public class Velov extends javax.swing.JFrame {
         confirmSuppr.setVisible(true);
     }//GEN-LAST:event_supprButtonActionPerformed
 
+  
     private void jList1ValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jList1ValueChanged
         // TODO add your handling code here:
         valeurListe = jList1.getSelectedIndex();
@@ -685,7 +863,6 @@ public class Velov extends javax.swing.JFrame {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
-        OracleStationDAO bd = new OracleStationDAO("connexion.properties");
         if (mm.getRowCount() > 0) {
             Object ligneASuppr;
             if (jTable1.getSelectedRowCount() > 1) {
@@ -732,7 +909,6 @@ public class Velov extends javax.swing.JFrame {
 
     private void refreshButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshButtonActionPerformed
         // TODO add your handling code here:
-        OracleStationDAO bd = new OracleStationDAO("connexion.properties");
         mm.metAJourTable(bd.getLesStations());
     }//GEN-LAST:event_refreshButtonActionPerformed
 
@@ -766,10 +942,101 @@ public class Velov extends javax.swing.JFrame {
         // TODO add your handling code here:
         int ligneSelec = jTable1.getSelectedRow();
         Object ligneASuppr = mm.getValueAt(ligneSelec, 0);
-        OracleStationDAO bd = new OracleStationDAO("connexion.properties");
         bd.modifStation(jTextField1.getText(), jTextField2.getText(), jList1.getSelectedIndex() + 1, jTextField3.getText(), (String) ligneASuppr);
         mm.metAJourTable(bd.getLesStations());
     }//GEN-LAST:event_validModifButtonActionPerformed
+
+    private void enterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enterButtonActionPerformed
+        // TODO add your handling code here:
+        if(enterButton.getActionCommand().equals("Quitter")){
+            System.exit(0);
+        }else if(enterButton.getActionCommand().equals("Accéder à l'application")){
+            initDialog.setVisible(false);
+            lancFrame();
+        }
+    }//GEN-LAST:event_enterButtonActionPerformed
+
+    private void testButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_testButtonActionPerformed
+        // TODO add your handling code here:
+        connexionProgressBar.setVisible(true);
+        connexionProgressBar.setValue(100);
+        connexionProgressBar.setStringPainted(true);
+        connexionProgressBar.setForeground(Color.white);
+        username = jTextFieldUsername.getText();
+        password = String.valueOf(jTextFieldPassword.getPassword());
+        this.bd = new OracleStationDAO(username,password);
+        if(bd.testerConnexion()){
+            enterButton.setText("Accéder à l'application");
+            incorrectValue.setText("Les données sont correctes");
+            jButton7.setVisible(true);
+            initDialog.setSize(500, 470);
+        }else{
+            incorrectValue.setText("Impossible de se connecter, données erronées");
+            enterButton.setText("Quitter");
+            jButton7.setVisible(true);
+            initDialog.setSize(500, 420);
+        }
+    }//GEN-LAST:event_testButtonActionPerformed
+
+    private void jCheckBoxPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxPasswordActionPerformed
+        // TODO add your handling code here:
+        if(jCheckBoxPassword.isSelected()){
+            jTextFieldPassword.setEchoChar((char)0);
+        }else{
+            jTextFieldPassword.setEchoChar('*');
+        }
+    }//GEN-LAST:event_jCheckBoxPasswordActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jTextFieldUsernameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldUsernameKeyReleased
+        // TODO add your handling code here:
+        if(jTextFieldUsername.getText().length()!=8){
+            try {
+                if(!jTextFieldUsername.getText(0, 1).contains("p")){
+                    userNumberLabel.setText("Commence par un 'p'");
+                }else{
+                    userNumberLabel.setText("8 caracteres nécessaires");
+                }
+                    userNumberLabel.setVisible(true);
+                testButton.setEnabled(false);
+            } catch (BadLocationException ex) {
+                Logger.getLogger(Velov.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }else{
+            try {
+                if(!jTextFieldUsername.getText(0, 1).contains("p")){
+                    userNumberLabel.setVisible(true);
+                    userNumberLabel.setText("Commence par un 'p'");
+                }else{
+                userNumberLabel.setVisible(false);
+                if((jTextFieldPassword.getPassword().length==6))
+                    testButton.setEnabled(true);
+                }
+            } catch (BadLocationException ex) {
+                Logger.getLogger(Velov.class.getName()).log(Level.SEVERE, null, ex);
+            }
+                }
+    }//GEN-LAST:event_jTextFieldUsernameKeyReleased
+
+    private void jTextFieldPasswordKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldPasswordKeyReleased
+        // TODO add your handling code here:
+        if(jTextFieldPassword.getPassword().length!=6){
+            passwordNumberLabel.setVisible(true);
+            testButton.setEnabled(false);
+        }else{
+            passwordNumberLabel.setVisible(false);
+            if(jTextFieldUsername.getText().length()==8)
+                testButton.setEnabled(true);
+                }
+    }//GEN-LAST:event_jTextFieldPasswordKeyReleased
+
+    private void jTextFieldPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldPasswordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldPasswordActionPerformed
 
     /**
      * @param args the command line arguments
@@ -802,31 +1069,52 @@ public class Velov extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new Velov().setVisible(true);
+                new Velov().setVisible(false);
             }
         });
-
+        
+    }
+    
+    public void initDialogRun(){
+        initDialog.setVisible(true);
+        enterButton.setText("Quitter");
+        connexionProgressBar.setVisible(false);
     }
 
+    public void lancFrame(){
+        dialogPasse = true;
+        new Velov().setVisible(true);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDialog confirm;
     private javax.swing.JDialog confirmSuppr;
+    private javax.swing.JProgressBar connexionProgressBar;
     private javax.swing.JButton creerButton;
     private javax.swing.JFileChooser d;
     private javax.swing.JButton editButton;
+    private javax.swing.JButton enterButton;
     private javax.swing.JDialog erreur;
+    private javax.swing.JLabel incorrectValue;
+    private javax.swing.JDialog initDialog;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
+    private javax.swing.JCheckBox jCheckBoxPassword;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -850,9 +1138,14 @@ public class Velov extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
+    private javax.swing.JPasswordField jTextFieldPassword;
+    private javax.swing.JTextField jTextFieldUsername;
+    private javax.swing.JLabel passwordNumberLabel;
     private javax.swing.JDialog propos;
     private javax.swing.JButton refreshButton;
     private javax.swing.JButton supprButton;
+    private javax.swing.JButton testButton;
+    private javax.swing.JLabel userNumberLabel;
     private javax.swing.JButton validModifButton;
     // End of variables declaration//GEN-END:variables
 }

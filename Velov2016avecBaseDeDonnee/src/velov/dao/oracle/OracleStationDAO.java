@@ -66,6 +66,18 @@ public class OracleStationDAO implements IStationDAO{
       }
     }
   }
+
+    
+    public OracleStationDAO(String username,String codeBIP){
+        try {
+            Class.forName ("oracle.jdbc.OracleDriver");
+            this.connexionBD = DriverManager.getConnection ("jdbc:oracle:thin:@iutdoua-oracle.univ-lyon1.fr:1521:orcl", username, codeBIP);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(OracleStationDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            System.err.println("Erreur de connexion");
+        }
+    }
     
     
     @Override
@@ -136,6 +148,20 @@ public class OracleStationDAO implements IStationDAO{
         } catch (SQLException ex) {
             Logger.getLogger(OracleStationDAO.class.getName()).log(Level.SEVERE, null, ex);
         } 
+    }
+    
+    public boolean testerConnexion(){
+        boolean test = false;
+        try {
+            if(connexionBD.isValid(6)){
+                test = true;
+            }
+                } catch (SQLException ex) {
+            System.err.println("Erreur de connexion");
+        }catch(java.lang.NullPointerException e){
+            System.err.println("Erreur de connexion");
+        }
+         return test;
     }
     
 }
