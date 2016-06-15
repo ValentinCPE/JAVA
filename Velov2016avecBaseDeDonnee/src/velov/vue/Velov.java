@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.sql.DataSource;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JList;
@@ -21,6 +22,8 @@ import javax.swing.JTable;
 import javax.swing.UIManager;
 import javax.swing.text.BadLocationException;
 import swing.modele.ModeleTableList;
+import velov.dao.IStationDAO;
+import velov.dao.oracle.OracleDataSourceDAO;
 import velov.dao.oracle.OracleStationDAO;
 import velov.modele.Station;
 
@@ -35,19 +38,21 @@ import velov.modele.Station;
  */
 public class Velov extends javax.swing.JFrame {
 
-    List<Station> sta = new ArrayList<>();
+    private final List<Station> sta;
+    private static IStationDAO  stationDAO;
+    private static DataSource dataSourceDAO;
+    private static Connection connexionBD;
     ModeleTableList mm;
     int valeurListe;
     private static boolean dialogPasse = false;
     private String username;
     private String password;
-    private static OracleStationDAO bd;
 
     /**
      * Creates new form Velov
      */
     public Velov() {
-        mm = new ModeleTableList(sta);
+        sta = stationDAO.getLesStations();
         initComponents();
         if(!dialogPasse){
         initDialogRun();
@@ -114,6 +119,16 @@ public class Velov extends javax.swing.JFrame {
         jButton7 = new javax.swing.JButton();
         userNumberLabel = new javax.swing.JLabel();
         passwordNumberLabel = new javax.swing.JLabel();
+        tableCree = new javax.swing.JDialog();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
+        OKButton = new javax.swing.JButton();
+        confirmSupprTable = new javax.swing.JDialog();
+        jLabel22 = new javax.swing.JLabel();
+        jLabel23 = new javax.swing.JLabel();
+        supprTableOUI = new javax.swing.JButton();
+        supprTableNON = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -137,6 +152,7 @@ public class Velov extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
+        supprTabMenu = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
 
@@ -479,7 +495,112 @@ public class Velov extends javax.swing.JFrame {
                 .addContainerGap(102, Short.MAX_VALUE))
         );
 
+        tableCree.setTitle("Ajout des tables");
+        tableCree.setSize(new java.awt.Dimension(420, 250));
+
+        jLabel19.setText("Les tables STATION et ARRONDISSEMENT");
+
+        jLabel20.setText(" n'étaient pas présentes dans votre Base de Donnée");
+
+        jLabel21.setText("Pas de panique, elles y sont maintenant !");
+
+        OKButton.setText("OK");
+        OKButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                OKButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout tableCreeLayout = new javax.swing.GroupLayout(tableCree.getContentPane());
+        tableCree.getContentPane().setLayout(tableCreeLayout);
+        tableCreeLayout.setHorizontalGroup(
+            tableCreeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(tableCreeLayout.createSequentialGroup()
+                .addGroup(tableCreeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(tableCreeLayout.createSequentialGroup()
+                        .addGap(100, 100, 100)
+                        .addComponent(jLabel19))
+                    .addGroup(tableCreeLayout.createSequentialGroup()
+                        .addGap(78, 78, 78)
+                        .addComponent(jLabel20))
+                    .addGroup(tableCreeLayout.createSequentialGroup()
+                        .addGap(99, 99, 99)
+                        .addComponent(jLabel21))
+                    .addGroup(tableCreeLayout.createSequentialGroup()
+                        .addGap(134, 134, 134)
+                        .addComponent(OKButton, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(91, Short.MAX_VALUE))
+        );
+        tableCreeLayout.setVerticalGroup(
+            tableCreeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(tableCreeLayout.createSequentialGroup()
+                .addGap(35, 35, 35)
+                .addComponent(jLabel19)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel20)
+                .addGap(34, 34, 34)
+                .addComponent(jLabel21)
+                .addGap(18, 18, 18)
+                .addComponent(OKButton)
+                .addContainerGap(78, Short.MAX_VALUE))
+        );
+
+        confirmSupprTable.setTitle("ATTENTION");
+        confirmSupprTable.setSize(new java.awt.Dimension(400, 200));
+
+        jLabel22.setText("Voulez-vous vraiment supprimer les tables ?");
+
+        jLabel23.setText("Cela redémarrera le logiciel");
+
+        supprTableOUI.setText("Oui");
+        supprTableOUI.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                supprTableOUIActionPerformed(evt);
+            }
+        });
+
+        supprTableNON.setText("Non");
+        supprTableNON.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                supprTableNONActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout confirmSupprTableLayout = new javax.swing.GroupLayout(confirmSupprTable.getContentPane());
+        confirmSupprTable.getContentPane().setLayout(confirmSupprTableLayout);
+        confirmSupprTableLayout.setHorizontalGroup(
+            confirmSupprTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(confirmSupprTableLayout.createSequentialGroup()
+                .addGroup(confirmSupprTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(confirmSupprTableLayout.createSequentialGroup()
+                        .addGap(78, 78, 78)
+                        .addComponent(jLabel22))
+                    .addGroup(confirmSupprTableLayout.createSequentialGroup()
+                        .addGap(111, 111, 111)
+                        .addComponent(jLabel23))
+                    .addGroup(confirmSupprTableLayout.createSequentialGroup()
+                        .addGap(53, 53, 53)
+                        .addComponent(supprTableOUI, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(40, 40, 40)
+                        .addComponent(supprTableNON, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(93, Short.MAX_VALUE))
+        );
+        confirmSupprTableLayout.setVerticalGroup(
+            confirmSupprTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(confirmSupprTableLayout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addComponent(jLabel22)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel23)
+                .addGap(18, 18, 18)
+                .addGroup(confirmSupprTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(supprTableOUI)
+                    .addComponent(supprTableNON))
+                .addContainerGap(66, Short.MAX_VALUE))
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Velo'v");
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/velov/vue/bandeau.JPG"))); // NOI18N
         jLabel1.setText("jLabel1");
@@ -682,6 +803,14 @@ public class Velov extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem2);
 
+        supprTabMenu.setText("Supprimer les tables");
+        supprTabMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                supprTabMenuActionPerformed(evt);
+            }
+        });
+        jMenu1.add(supprTabMenu);
+
         jMenuItem3.setText("Quitter");
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -848,6 +977,7 @@ public class Velov extends javax.swing.JFrame {
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         // TODO add your handling code here:
+        bd.quitter();
         System.exit(0);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
@@ -949,6 +1079,7 @@ public class Velov extends javax.swing.JFrame {
     private void enterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enterButtonActionPerformed
         // TODO add your handling code here:
         if(enterButton.getActionCommand().equals("Quitter")){
+            bd.quitter();
             System.exit(0);
         }else if(enterButton.getActionCommand().equals("Accéder à l'application")){
             initDialog.setVisible(false);
@@ -966,6 +1097,12 @@ public class Velov extends javax.swing.JFrame {
         password = String.valueOf(jTextFieldPassword.getPassword());
         this.bd = new OracleStationDAO(username,password);
         if(bd.testerConnexion()){
+            if(!bd.tableStationExiste()){
+            bd.creerTableStation();
+            tableCree.setVisible(true);
+             }else{
+                
+            }
             enterButton.setText("Accéder à l'application");
             incorrectValue.setText("Les données sont correctes");
             jButton7.setVisible(true);
@@ -989,6 +1126,7 @@ public class Velov extends javax.swing.JFrame {
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         // TODO add your handling code here:
+        bd.quitter();
         System.exit(0);
     }//GEN-LAST:event_jButton7ActionPerformed
 
@@ -1038,6 +1176,29 @@ public class Velov extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldPasswordActionPerformed
 
+    private void OKButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OKButtonActionPerformed
+        // TODO add your handling code here:
+        tableCree.setVisible(false);
+    }//GEN-LAST:event_OKButtonActionPerformed
+
+    private void supprTabMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_supprTabMenuActionPerformed
+        // TODO add your handling code here:
+        confirmSupprTable.setVisible(true);  
+    }//GEN-LAST:event_supprTabMenuActionPerformed
+
+    private void supprTableNONActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_supprTableNONActionPerformed
+        // TODO add your handling code here:
+        confirmSupprTable.setVisible(false);
+    }//GEN-LAST:event_supprTableNONActionPerformed
+
+    private void supprTableOUIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_supprTableOUIActionPerformed
+        bd.supprTable();  
+        bd.quitter();
+        this.dispose(); 
+        initDialogRun();
+        confirmSupprTable.setVisible(false);
+    }//GEN-LAST:event_supprTableOUIActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1066,10 +1227,16 @@ public class Velov extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new Velov().setVisible(false);
+        java.awt.EventQueue.invokeLater(() -> {
+            try{
+                dataSourceDAO = OracleDataSourceDAO.getOracleDataSourceDAO();
+                stationDAO = new OracleStationDAO();
+                stationDAO.setDataSource(dataSourceDAO);
+                connexionBD = dataSourceDAO.getConnection();
+                stationDAO.setConnection(connexionBD);
+                new Velov().setVisible(true);
+            }catch(SQLException ex){
+                Logger.getLogger(Velov.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
         
@@ -1085,10 +1252,16 @@ public class Velov extends javax.swing.JFrame {
         dialogPasse = true;
         new Velov().setVisible(true);
     }
+    
+    private void formWindowClosing(java.awt.event.WindowEvent evt){
+        bd.quitter();
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton OKButton;
     private javax.swing.JDialog confirm;
     private javax.swing.JDialog confirmSuppr;
+    private javax.swing.JDialog confirmSupprTable;
     private javax.swing.JProgressBar connexionProgressBar;
     private javax.swing.JButton creerButton;
     private javax.swing.JFileChooser d;
@@ -1115,7 +1288,12 @@ public class Velov extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1144,6 +1322,10 @@ public class Velov extends javax.swing.JFrame {
     private javax.swing.JDialog propos;
     private javax.swing.JButton refreshButton;
     private javax.swing.JButton supprButton;
+    private javax.swing.JMenuItem supprTabMenu;
+    private javax.swing.JButton supprTableNON;
+    private javax.swing.JButton supprTableOUI;
+    private javax.swing.JDialog tableCree;
     private javax.swing.JButton testButton;
     private javax.swing.JLabel userNumberLabel;
     private javax.swing.JButton validModifButton;

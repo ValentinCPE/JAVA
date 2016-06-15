@@ -9,6 +9,6 @@ package velov.dao.oracle;
  *
  * @author Valentin
  */
-public class OracleDataSourceDAO {
+public class OracleDataSourceDAO{
     
 }
