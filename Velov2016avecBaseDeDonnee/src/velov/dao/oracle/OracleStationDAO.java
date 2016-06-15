@@ -37,6 +37,7 @@ public class OracleStationDAO implements IStationDAO{
         this.datas = ds;
     }
 
+    @Override
     public void setConnection(Connection c) {
         this.connexionBD = c;
     }
@@ -106,6 +107,7 @@ public class OracleStationDAO implements IStationDAO{
        } 
     }
     
+    @Override
     public void modifStation(String numStation,String nomStation,Integer numArron,String loc,String numStationASuppr){
         PreparedStatement pstm = null;
         try{
@@ -127,6 +129,7 @@ public class OracleStationDAO implements IStationDAO{
         } 
     }
     
+    @Override
     public boolean testerConnexion(){
         boolean test = false;
         try {
@@ -141,6 +144,7 @@ public class OracleStationDAO implements IStationDAO{
          return test;
     }
     
+    @Override
     public boolean tableStationExiste(){
         boolean existe = false;
         Statement stmt = null;
@@ -164,6 +168,7 @@ public class OracleStationDAO implements IStationDAO{
         return existe;
       }
     
+    @Override
     public void creerTableStation(){
         Statement stmt = null;
         try {
@@ -207,6 +212,7 @@ public class OracleStationDAO implements IStationDAO{
         }
     }
     
+    @Override
     public void supprTable(){
         Statement stmt = null;
         try {
@@ -226,9 +232,16 @@ public class OracleStationDAO implements IStationDAO{
 
     @Override
     public Connection getConnection() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Connection base = null;
+        try {
+            base = DriverManager.getConnection(String.valueOf(datas));
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+        return base;
     }
     
+    @Override
     public void quitter(){
         try {
             this.connexionBD.close();

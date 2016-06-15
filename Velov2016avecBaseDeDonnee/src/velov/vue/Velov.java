@@ -57,8 +57,8 @@ public class Velov extends javax.swing.JFrame {
         if(!dialogPasse){
         initDialogRun();
         }else{
-            for (int i = 0; i < bd.getLesStations().size(); i++) {
-            mm.ajoutListe(bd.getLesStations().get(i));
+            for (int i = 0; i < stationDAO.getLesStations().size(); i++) {
+            mm.ajoutListe(stationDAO.getLesStations().get(i));
         }
         }
         jTextField1.setEditable(false);
@@ -920,8 +920,8 @@ public class Velov extends javax.swing.JFrame {
             String localisation = jTextField3.getText();
             numArrond = valeurListe + 1;
             Station nouvStation = new Station(num, nom, localisation, numArrond);
-            bd.creerStation(nouvStation);
-            mm.metAJourTable(bd.getLesStations());
+            stationDAO.creerStation(nouvStation);
+            mm.metAJourTable(stationDAO.getLesStations());
             confirm.setVisible(false);
             jTextField1.setEditable(false);
             jTextField2.setEditable(false);
@@ -977,7 +977,7 @@ public class Velov extends javax.swing.JFrame {
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         // TODO add your handling code here:
-        bd.quitter();
+        stationDAO.quitter();
         System.exit(0);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
@@ -999,14 +999,14 @@ public class Velov extends javax.swing.JFrame {
                 int[] plusieursLignesSelec = jTable1.getSelectedRows();
                 for (int i = plusieursLignesSelec.length - 1; i >= 0; i--) {
                     ligneASuppr = mm.getValueAt(plusieursLignesSelec[i], 0);
-                    bd.supprimerStation((String) ligneASuppr);
-                    mm.metAJourTable(bd.getLesStations());
+                    stationDAO.supprimerStation((String) ligneASuppr);
+                    mm.metAJourTable(stationDAO.getLesStations());
                 }
             } else {
                 int ligneSelec = jTable1.getSelectedRow();
                 ligneASuppr = mm.getValueAt(ligneSelec, 0);
-                bd.supprimerStation((String) ligneASuppr);
-                mm.metAJourTable(bd.getLesStations());
+                stationDAO.supprimerStation((String) ligneASuppr);
+                mm.metAJourTable(stationDAO.getLesStations());
             }
             jTextField1.setText("");
             jTextField2.setText("");
@@ -1039,7 +1039,7 @@ public class Velov extends javax.swing.JFrame {
 
     private void refreshButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshButtonActionPerformed
         // TODO add your handling code here:
-        mm.metAJourTable(bd.getLesStations());
+        mm.metAJourTable(stationDAO.getLesStations());
     }//GEN-LAST:event_refreshButtonActionPerformed
 
     private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
@@ -1072,14 +1072,14 @@ public class Velov extends javax.swing.JFrame {
         // TODO add your handling code here:
         int ligneSelec = jTable1.getSelectedRow();
         Object ligneASuppr = mm.getValueAt(ligneSelec, 0);
-        bd.modifStation(jTextField1.getText(), jTextField2.getText(), jList1.getSelectedIndex() + 1, jTextField3.getText(), (String) ligneASuppr);
-        mm.metAJourTable(bd.getLesStations());
+        stationDAO.modifStation(jTextField1.getText(), jTextField2.getText(), jList1.getSelectedIndex() + 1, jTextField3.getText(), (String) ligneASuppr);
+        mm.metAJourTable(stationDAO.getLesStations());
     }//GEN-LAST:event_validModifButtonActionPerformed
 
     private void enterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enterButtonActionPerformed
         // TODO add your handling code here:
         if(enterButton.getActionCommand().equals("Quitter")){
-            bd.quitter();
+            stationDAO.quitter();
             System.exit(0);
         }else if(enterButton.getActionCommand().equals("Accéder à l'application")){
             initDialog.setVisible(false);
@@ -1095,10 +1095,9 @@ public class Velov extends javax.swing.JFrame {
         connexionProgressBar.setForeground(Color.white);
         username = jTextFieldUsername.getText();
         password = String.valueOf(jTextFieldPassword.getPassword());
-        this.bd = new OracleStationDAO(username,password);
-        if(bd.testerConnexion()){
-            if(!bd.tableStationExiste()){
-            bd.creerTableStation();
+        if(stationDAO.testerConnexion()){
+            if(!stationDAO.tableStationExiste()){
+            stationDAO.creerTableStation();
             tableCree.setVisible(true);
              }else{
                 
@@ -1126,7 +1125,7 @@ public class Velov extends javax.swing.JFrame {
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         // TODO add your handling code here:
-        bd.quitter();
+        stationDAO.quitter();
         System.exit(0);
     }//GEN-LAST:event_jButton7ActionPerformed
 
@@ -1192,8 +1191,8 @@ public class Velov extends javax.swing.JFrame {
     }//GEN-LAST:event_supprTableNONActionPerformed
 
     private void supprTableOUIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_supprTableOUIActionPerformed
-        bd.supprTable();  
-        bd.quitter();
+        stationDAO.supprTable();  
+        stationDAO.quitter();
         this.dispose(); 
         initDialogRun();
         confirmSupprTable.setVisible(false);
@@ -1254,7 +1253,7 @@ public class Velov extends javax.swing.JFrame {
     }
     
     private void formWindowClosing(java.awt.event.WindowEvent evt){
-        bd.quitter();
+        stationDAO.quitter();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
